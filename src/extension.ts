@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { PromptProvider } from './prompts/provider';
 import { info, registerLogger } from './modules/log';
+import { ChatProvider } from './chats/provider';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -23,6 +24,11 @@ export function activate(context: vscode.ExtensionContext) {
 	const provider = new PromptProvider(statusBarItem, context);
 	let disposable = vscode.languages.registerInlineCompletionItemProvider({ pattern: '**', }, provider);
 	context.subscriptions.push(disposable);
+
+	context.subscriptions.push(
+		vscode.window.registerWebviewViewProvider("llama.chat", new ChatProvider())
+	);
+	
 }
 
 export function deactivate() {

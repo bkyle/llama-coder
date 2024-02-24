@@ -30,9 +30,20 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "extensionKind": ["ui"],
+  "extensionKind": [
+    "ui"
+  ],
   "main": "./out/extension.js",
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "llama.chat",
+          "name": "Llama Coder Chat",
+          "type": "webview"
+        }
+      ]
+    },
     "configuration": [
       {
         "title": "Llama coder",
@@ -158,9 +169,13 @@
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
     "dotenv": "^16.3.1",
+    "esbuild": "^0.20.1",
     "eslint": "^8.52.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.1",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@vscode/webview-ui-toolkit": "^1.4.0"
   }
 }
